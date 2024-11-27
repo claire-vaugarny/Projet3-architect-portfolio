@@ -1,5 +1,3 @@
-//dans le terminal lancer la commande       node server.js  dans le dossier Backend
-
 // fetch("http://localhost:5678/api/works").then((response)=>{
 //     console.log('réponse de requete :', response) //permet la vérification de la requête dans la console.
 // });
@@ -45,51 +43,55 @@ fetch("http://localhost:5678/api/works").then((response)=>{
     return response.json();
 }).then((projets)=>{
     console.log(projets);
-    //récupère les filtres, creer un nouveau tableau sans doublons
-    const categories = projets.map(projet=>projet.category.name) //création du tableau avec toutes les catégories
-    const categorieSansDoublons =['Tous']; //ajout de Tous car le filtre n'existe pas dans les catégories dans json
-    categories.forEach(categorie=>{
-        if (!categorieSansDoublons.includes(categorie)){categorieSansDoublons.push(categorie)}
-    }) 
-    console.log(categorieSansDoublons);
+
+    const categories = projets.map(projet=>projet.category.name) //création du tableau avec toutes les catégories avec doublons
+    let categorieSansDoublons = new Set(categories); //création du set sans doublons
+    let categoriesAvecTous = ['Tous', ...Array.from(categorieSansDoublons)]; //transforme leSet en tableau et ajoute la catégorie Tous
+    console.log(categoriesAvecTous);
 
     //affichage des filtres récupérés
     menuFilters.innerHTML=""; //efface les filtres précédents
-    categorieSansDoublons.forEach(filter=>{
+    categoriesAvecTous.forEach(filter=>{
         affichageFiltre(filter); //affiche tous les filtres mis à jour
     })
     
-
     //affichage de tous les projets
     gallery.innerHTML="";  //efface les projets précédents
     projets.forEach(projet => {
         affichageProjet(projet); //affiche tous les projets mis à jour
 
-        afficherProjetsFiltres(projets,"Hotels & restaurants")
-        afficherProjetsFiltres(projets,"Objets")
-        afficherProjetsFiltres(projets,"Appartements")
+        // afficherProjetsFiltres(projets,"Hotels & restaurants")
+        // afficherProjetsFiltres(projets,"Objets")
+        // afficherProjetsFiltres(projets,"Appartements")
+    });
+
+    //affichage des projets au clique de chaque catégorie
+    menuFilters.addEventListener('click', (event) => {
+        //récupère la catégorie
+        const selectedCategory = event.target.textContent;
+        
+        if (selectedCategory === 'Tous') {
+            gallery.innerHTML = "";  // Vider la galerie
+            projets.forEach(projet => {
+                affichageProjet(projet);  // Afficher tous les projets
+            });
+        } else {
+            afficherProjetsFiltres(projets, selectedCategory);  // Afficher les projets filtrés par catégorie
+        }
     });
 });
 
 
 
 
-
-
-
-
-
-
-
-
-
 //Note à moi meme
 //on peut aussi utiliser ça dans la fonction affichageProjet mais modifier le DOM peut entrainer des problèmes de comportement par la suite
+//notamment si on ajoute un évènement dessus comme c'est le cas pour les filtres
 // gallery.innerHTML+='<article>' //+= permet d'jouter chaque nouveau projet au lieu de le remplacer
 // + '<img src="'+ projet.imageUrl + '" alt="'+projet.title+'"/>'
 // + '<figcaption>'+ projet.title+ '</figcaption>'
 // +'</article>'
 
-
-
-
+//pourquoi on n'a pas besoin de preventDefault ?
+//<button type="submit"> et que tu veux empêcher l'envoi du formulaire, tu ajouterais event.preventDefault() à cet événement.
+//Le clic sur un <li> ne déclenche aucune action par défaut.

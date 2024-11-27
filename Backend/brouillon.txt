@@ -1,0 +1,68 @@
+fetch("http://localhost:5678/api/works").then((response)=>{
+    return response.json();
+}).then((projets)=>{
+    console.log(projets);
+    //récupère les filtres, creer un nouveau tableau sans doublons
+    const categories = projets.map(projet=>projet.category.name) //création du tableau avec toutes les catégories
+    const categorieSansDoublons =['Tous']; //ajout de Tous car le filtre n'existe pas dans les catégories dans json
+    categories.forEach(categorie=>{
+        if (!categorieSansDoublons.includes(categorie)){categorieSansDoublons.push(categorie)}
+    }) 
+    console.log(categorieSansDoublons);
+
+    //affichage des filtres récupérés
+    menuFilters.innerHTML=""; //efface les filtres précédents
+    categorieSansDoublons.forEach(filter=>{
+        affichageFiltre(filter); //affiche tous les filtres mis à jour
+    })
+
+
+
+
+
+
+
+
+
+
+
+    //récupère les filtres, creer un nouveau tableau sans doublons
+    const categorieSansDoublons =['Tous']; //ajout de Tous car le filtre n'existe pas dans les catégories dans json
+    categories.forEach(categorie=>{
+        if (!categorieSansDoublons.includes(categorie)){categorieSansDoublons.push(categorie)}
+    }) 
+    console.log(categorieSansDoublons);
+
+
+
+
+
+
+
+
+    // Connexion de l'utilisateur à l'API
+async function loginUser(emailUser, passwordUser) {
+    const dataLogin = {
+        "email": emailUser,
+        "password": passwordUser
+    };
+
+    // Effectuer la requête fetch
+    fetch('http://localhost:5678/api/users/login', {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(dataLogin)
+    })
+    .then(response => {
+        console.log(response); // Affiche la réponse de l'API à la requête
+    })
+    .then(data => {
+        data = response.json(); // Récupère la réponse en format JSON
+        console.log(data);  // Affiche l'id et le token OU le message user not found
+        return data;
+    })
+    .catch(error => {
+        console.log('Erreur de requête:', error);
+        window.alert("Erreur dans l’identifiant ou le mot de passe");
+    });
+}

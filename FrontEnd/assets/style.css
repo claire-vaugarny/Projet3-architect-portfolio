@@ -173,35 +173,35 @@ li:hover {
 
 }
 
-/**** section contact ****/
-#contact {
+/**** section contact et login sur la page correspondante ****/
+#login  ,#contact {
 	width: 50%;
 margin: auto;
 }
-#contact > * {
+#login > * ,#contact > * {
 	text-align: center;
 
 }
-#contact h2{
+#login h2  ,#contact h2{
 	margin-bottom: 20px;
 }
-#contact form {
+#login form  ,#contact form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
+#login input ,#contact input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact label {
+#login label ,#contact label {
 	margin: 2em 0 1em 0;
 }
-#contact textarea {
+#login textarea ,#contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
@@ -223,4 +223,12 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+
+.body_login{
+	display: flex;
+	flex-direction: column;
+	/* La hauteur minimale est 100% de la hauteur de la fenêtre */
+	min-height: 100vh;
+}
+
 
