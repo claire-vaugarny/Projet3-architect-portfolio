@@ -56,7 +56,7 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px 0;
 }
 section {
 	margin: 50px 0
@@ -99,6 +99,7 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
 
 /**** section introduction  ****/
 #introduction {
@@ -149,7 +150,9 @@ li:hover {
 	font-weight: 700;
 	font-size: 16px;
 	color: #1D6154;
-	/* text-align: center; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	border: 1px solid #1D6154;
 	border-radius: 25px;
 	background-color: transparent;
@@ -231,4 +234,55 @@ footer nav ul {
 	min-height: 100vh;
 }
 
+
+/**** mode édition ****/
+.hidden{
+	display:none;
+}
+.active{
+	display: flex;
+}
+/** bandeau noir **/
+.editMode{
+	width: 100%;
+	height: 59px;
+	justify-content: center;
+	align-items: center;
+	color: #FFFFFF;
+	background-color: #000000;
+
+	position: fixed;
+	top:0;
+}
+.editMode i{
+	width: 15.58px;
+	height: 15.58px;
+}
+.editMode p{
+	margin-left: 10px;
+	font-family: 'Work Sans';
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 18.77px;
+	text-align: center;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+}
+/** header **/
+.headerActive {
+	margin-top: 109px; /* 50px de base + 59px pour décaler avec le editMode */
+}
+/** icon + modifier **/
+.editMesProjetsActive{
+	align-items: center;
+}
+.modifyMesProjets{
+	margin-left: 1.5em;
+	margin-bottom: 30px; /*pour l'alignement avec Mes Projets*/
+}
+.editMesProjets p{
+	margin-left: 0.5em;
+	font-size: 14px;
+	line-height: 16.42px;
+}
 

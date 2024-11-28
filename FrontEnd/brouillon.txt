@@ -1,0 +1,41 @@
+.modifyMesProjets {
+    /* Votre style de base pour la div */
+    opacity: 1;
+    transition: opacity 300ms ease-out; /* Transition d'opacité si nécessaire */
+}
+
+.modifyMesProjets.active {
+    /* Style lorsque la classe active est présente */
+    opacity: 1;
+}
+
+.modifyMesProjets.animate {
+    /* Lorsque la classe animate est ajoutée, on lance l'animation */
+    animation-name: dissolve; /* Animation de dissolution */
+    animation-timing-function: ease-out; /* Fonction de temporisation */
+    animation-duration: 300ms; /* Durée de l'animation */
+}
+
+/* Animation : dissolution */
+@keyframes dissolve {
+    0% {
+        opacity: 0; /* L'élément commence invisible */
+    }
+    100% {
+        opacity: 1; /* L'élément devient complètement visible */
+    }
+}
+
+
+
+JS
+document.querySelector('.modifyMesProjets').addEventListener('click', function() {
+    // Ajouter la classe 'animate' pour déclencher l'animation
+    this.classList.add('animate');
+
+    // Après la fin de l'animation (300ms), retirer la classe 'animate' pour qu'elle soit prête pour le prochain clic
+    setTimeout(() => {
+        this.classList.remove('animate');
+    }, 300); // Le délai doit correspondre à la durée de l'animation
+});
+

@@ -49,6 +49,7 @@ submitBtn.addEventListener("click", async (event) => {
 
     if (dataUserConnected) {
         console.log("Utilisateur connecté :", dataUserConnected);  // Affichage des données
-        // Vous pouvez maintenant utiliser `dataUserConnected` pour d'autres actions
+        window.localStorage.setItem("userData",JSON.stringify(dataUserConnected));  //enregistre l'utilisateur une fois connecté.
+        window.location.href = 'index.html';  // Redirige vers index.html
     }
 });
