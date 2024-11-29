@@ -39,3 +39,13 @@ document.querySelector('.modifyMesProjets').addEventListener('click', function()
     }, 300); // Le délai doit correspondre à la durée de l'animation
 });
 
+
+
+
+
+JS
+if (editMode) {
+    editMode.classList.replace('hidden', 'active');
+} else {
+    console.error('Élément .editMode introuvable');
+}
