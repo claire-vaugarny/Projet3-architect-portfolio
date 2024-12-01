@@ -3,19 +3,87 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -23,46 +91,68 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
 	display: block;
 }
+
 body {
 	line-height: 1;
 }
-ol, ul {
+
+ol,
+ul {
 	list-style: none;
 }
-blockquote, q {
+
+blockquote,
+q {
 	quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
 	content: '';
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
 /** end reset css**/
 body {
 	max-width: 1140px;
-	margin:auto;
-	font-family: 'Work Sans' ;
+	margin: auto;
+	font-family: 'Work Sans';
 	font-size: 14px;
 }
+
 header {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0;
 }
+
 section {
 	margin: 50px 0
 }
 
-h1{
+h1 {
 	display: flex;
 	flex-direction: column;
 	font-family: 'Syne';
@@ -71,14 +161,14 @@ h1{
 	color: #B1663C
 }
 
-h1 > span {
+h1>span {
 	font-family: 'Work Sans';
-	font-size:10px;
+	font-size: 10px;
 	letter-spacing: 0.1em;
-;
+	;
 }
 
-h2{
+h2 {
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
@@ -91,6 +181,7 @@ nav ul {
 	list-style-type: none;
 
 }
+
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
@@ -106,9 +197,11 @@ li:hover {
 	display: flex;
 	align-items: center;
 }
+
 #introduction figure {
 	flex: 1
 }
+
 #introduction img {
 	display: block;
 	margin: auto;
@@ -118,6 +211,7 @@ li:hover {
 #introduction article {
 	flex: 1
 }
+
 #introduction h2 {
 	margin-bottom: 1em;
 }
@@ -133,19 +227,21 @@ li:hover {
 	flex-direction: column;
 	align-items: center;
 }
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
 }
 
-.menuFilters{
+.menuFilters {
 	display: flex;
 	list-style: none;
 	margin-bottom: 3em;
-	gap : 1em;
+	gap: 1em;
 }
-.menuFilters li{
-	padding: 9.5px 29px;
+
+.menuFilters li {
+	padding: 10px 30px;
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 16px;
@@ -158,7 +254,8 @@ li:hover {
 	background-color: transparent;
 	box-sizing: border-box;
 }
-.menuFilters li:hover{
+
+.menuFilters li:hover {
 	background-color: #1D6154;
 	color: #FFFFFF;
 }
@@ -177,47 +274,59 @@ li:hover {
 }
 
 /**** section contact et login sur la page correspondante ****/
-#login  ,#contact {
+#login,
+#contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
-#login > * ,#contact > * {
+
+#login>*,
+#contact>* {
 	text-align: center;
 
 }
-#login h2  ,#contact h2{
+
+#login h2,
+#contact h2 {
 	margin-bottom: 20px;
 }
-#login form  ,#contact form {
+
+#login form,
+#contact form {
 	text-align: left;
-	margin-top:30px;
+	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#login input ,#contact input {
+#login input,
+#contact input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#login label ,#contact label {
+
+#login label,
+#contact label {
 	margin: 2em 0 1em 0;
 }
-#login textarea ,#contact textarea {
+
+#login textarea,
+#contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+input[type="submit"] {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
 	background-color: #1D6154;
-	margin : 2em auto ;
+	margin: 2em auto;
 	width: 180px;
 	text-align: center;
-	border-radius: 60px ;
+	border-radius: 60px;
 }
 
 /**** footer ****/
@@ -227,7 +336,7 @@ footer nav ul {
 	margin: 2em
 }
 
-.body_login{
+.body_login {
 	display: flex;
 	flex-direction: column;
 	/* La hauteur minimale est 100% de la hauteur de la fenêtre */
@@ -236,14 +345,16 @@ footer nav ul {
 
 
 /**** mode édition ****/
-.hidden{
-	display:none;
+.hidden {
+	display: none;
 }
-.active{
+
+.active {
 	display: flex;
 }
+
 /** bandeau noir **/
-.editMode{
+.editMode {
 	width: 100%;
 	height: 59px;
 	justify-content: center;
@@ -252,13 +363,15 @@ footer nav ul {
 	background-color: #000000;
 
 	position: fixed;
-	top:0;
+	top: 0;
 }
-.editMode i{
+
+.editMode i {
 	width: 15.58px;
 	height: 15.58px;
 }
-.editMode p{
+
+.editMode p {
 	margin-left: 10px;
 	font-family: 'Work Sans';
 	font-size: 16px;
@@ -268,21 +381,99 @@ footer nav ul {
 	text-underline-position: from-font;
 	text-decoration-skip-ink: none;
 }
+
 /** header **/
 .headerActive {
-	margin-top: 109px; /* 50px de base + 59px pour décaler avec le editMode */
+	margin-top: 109px;
+	/* 50px de base + 59px pour décaler avec le editMode */
 }
+
 /** icon + modifier **/
-.editMesProjetsActive{
+.editMesProjetsActive {
 	align-items: center;
 }
-.modifyMesProjets{
+
+.modifyMesProjets {
 	margin-left: 1.5em;
-	margin-bottom: 30px; /*pour l'alignement avec Mes Projets*/
+	margin-bottom: 30px;
+	/*pour l'alignement avec Mes Projets*/
 }
-.editMesProjets p{
+
+.editMesProjets p {
 	margin-left: 0.5em;
 	font-size: 14px;
 	line-height: 16.42px;
 }
 
+
+/**** La modale *****/
+.modaleContainer{
+	width: 100%;
+	padding: 20px 50px;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
+}
+.fa-arrow-left{
+	position: absolute;
+	font-size: 12px;
+	top: 0;
+	left: 0;
+}
+.fa-xmark{
+	position: absolute;
+	font-size: 12px;
+	right: 0;
+	top: 0;
+}
+.modaleContainer p {
+	font-family: 'Work Sans';
+	font-size: 26px;
+	font-weight: 400;
+	line-height: 30.5px;
+	text-align: center;
+	text-underline-position: 'from-font';
+	text-decoration-skip-ink: none;
+	margin-bottom: 20px;
+}
+.deleteGallery{
+	/* display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%; */
+	display: grid;
+	grid-template-columns: repeat(5,1fr);
+	column-gap: 15px; /* Espace entre les colonnes */
+    row-gap: 25px;    /* Espace entre les lignes */
+	padding-bottom: 50px;
+	border-bottom:1px solid #B3B3B3;
+}
+.deleteCard{
+	position: relative;
+	margin: 10px;
+}
+.deleteCard img{
+	width: 100%;
+	object-fit: contain;
+}
+.fa-trash-can{
+	position: absolute;
+	transform: translate(-120%,20%);
+	padding: 10px;
+	background-color: #000000;
+	color: #FFFFFF;
+	border-radius: 7px;
+}
+#btnAjoutPhoto {
+	border-style: none;
+	font: 700 14px 'Syne';
+	line-height: 16.8px;
+	color: #FFFFFF;
+	background-color: #1D6154;
+	margin: 2em auto;
+	padding: 10px 30px;
+	text-align: center;
+	border-radius: 60px;
+}

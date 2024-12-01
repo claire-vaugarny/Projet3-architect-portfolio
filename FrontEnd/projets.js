@@ -2,8 +2,8 @@
 //     console.log('réponse de requete :', response) //permet la vérification de la requête dans la console.
 // });
 
-const gallery = document.querySelector('.gallery');
-const menuFilters = document.querySelector('.menuFilters');
+
+            //affichage des projets dans la galerie et gestion des filtres
 
 //pour ajouter un projet dans gallery
 function affichageProjet(projet){
@@ -57,12 +57,17 @@ fetch("http://localhost:5678/api/works").then((response)=>{
     
     //affichage de tous les projets
     gallery.innerHTML="";  //efface les projets précédents
+    deleteGallery.innerHTML="";
+
     projets.forEach(projet => {
         affichageProjet(projet); //affiche tous les projets mis à jour
-
         // afficherProjetsFiltres(projets,"Hotels & restaurants")
         // afficherProjetsFiltres(projets,"Objets")
         // afficherProjetsFiltres(projets,"Appartements")
+
+
+            //pour la modale
+        affichageProjetModale(projet);
     });
 
     //affichage des projets au clique de chaque catégorie
@@ -79,9 +84,8 @@ fetch("http://localhost:5678/api/works").then((response)=>{
             afficherProjetsFiltres(projets, selectedCategory);  // Afficher les projets filtrés par catégorie
         }
     });
+
 });
-
-
 
 
 //Note à moi meme
@@ -95,3 +99,48 @@ fetch("http://localhost:5678/api/works").then((response)=>{
 //pourquoi on n'a pas besoin de preventDefault ?
 //<button type="submit"> et que tu veux empêcher l'envoi du formulaire, tu ajouterais event.preventDefault() à cet événement.
 //Le clic sur un <li> ne déclenche aucune action par défaut.
+
+
+
+                //affichage de la modale et gestion des boutons
+
+//pour optimier, on n'utilise qu'un seul fetch, au dessus, la fonction sera donc appelée au dessus
+function affichageProjetModale(projet){
+    const article = document.createElement('article');
+    article.classList.add('deleteCard');
+    deleteGallery.appendChild(article);
+
+    const image = document.createElement('img');
+    image.src = projet.imageUrl;
+    image.alt = projet.title;
+    article.appendChild(image);
+
+    const icone = document.createElement('i');
+    icone.classList.add("fa-solid", "fa-trash-can");
+    icone.id = `idProjet-${parseInt(projet.id)}`;
+    article.appendChild(icone);
+
+        // Au clic sur l'icône poubelle, on recupère l'id du projet pour ensuite le supprimer de l'API
+        icone.addEventListener('click', function() {
+            const idProjet = parseInt(icone.id.split('-')[1]); // Extrait l'ID du projet
+            console.log(`Icône cliquée, ID du projet : ${idProjet}`);
+            fetch(`http://localhost:5678/api/works/${idProjet}`, {
+                method: 'DELETE',
+                headers: {
+                    'Accept': '*/*', // Indique que tout type de contenu est accepté
+                    'Authorization':`Bearer ${dataUserConnected.token}`, //ajoute le token d'identification
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log(`Projet ${idProjet} supprimé avec succès.`);
+                    article.remove(); // Supprime l'article du DOM dans la modale
+                } else {
+                    console.error("Erreur lors de la suppression :", response.status);
+                }
+            })
+        });
+}
+
+
+

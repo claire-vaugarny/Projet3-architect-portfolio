@@ -1,11 +1,3 @@
-const LoginLogout = document.getElementById('LoginLogout');
-const editMode = document.querySelector('.editMode');
-const editMesProjets = document.querySelector('.editMesProjets');
-const modifyMesProjets = document.querySelector('.modifyMesProjets');
-// const menuFilters = document.querySelector('menuFilters');
-const header = document.querySelector('.header');
-
-const dataUserConnected = window.localStorage.getItem('userData');
 console.log(dataUserConnected); //vérifie la connexion de l'utilisateur
 
 if (dataUserConnected) {
@@ -18,6 +10,7 @@ if (dataUserConnected) {
     editMesProjets.classList.replace('editMesProjets', 'editMesProjetsActive');
     modifyMesProjets.classList.replace('hidden', 'active'); //icone + 'moddifier'
     menuFilters.classList.replace('active', 'hidden'); //filtres
+
 } else {
     //l'utilisateur est déconnecté
     //transformation de la page Homepage_edit en Homepage
@@ -28,7 +21,6 @@ if (dataUserConnected) {
     editMesProjets.classList.replace('editMesProjets', 'editMesProjetsActive');
     modifyMesProjets.classList.replace('active', 'hidden'); //icone + 'moddifier'
     menuFilters.classList.replace('hidden', 'active'); //filtres
-
 
 };
 
@@ -43,6 +35,28 @@ LoginLogout.addEventListener('click', function () {
         window.location.href = './login.html';  // Redirige vers la page de connexion
     }
 });
+
+//affichage de la modale au clique sur modifier
+modifyMesProjets.addEventListener('click' , function(){
+    modaleContainer.classList.replace('hidden','active');
+});
+
+//supprimer un projet
+
+
+//affichage modale avec ajout de nouveau projet
+btnAjoutPhoto.addEventListener('click',function(){
+    modaleTitle.textContent="Ajout photo";
+});
+
+//retour à la modale avec les projets au clique sur la flèche
+arrowLeft.addEventListener('click',function(){
+    modaleTitle.textContent="Galerie photo";
+
+})
+
+
+
 
 
 // Note à moi même

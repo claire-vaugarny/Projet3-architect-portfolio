@@ -33,7 +33,6 @@ function loginUser(emailUser, passwordUser) {
 
 
 
-const submitBtn = document.getElementById('submit');
 
 submitBtn.addEventListener("click", async (event) => {
     event.preventDefault(); // Empêche le comportement par défaut du bouton submit
