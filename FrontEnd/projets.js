@@ -51,9 +51,11 @@ fetch("http://localhost:5678/api/works").then((response)=>{
 
     //affichage des filtres récupérés
     menuFilters.innerHTML=""; //efface les filtres précédents
-    categoriesAvecTous.forEach(filter=>{
+    if(!token){
+        categoriesAvecTous.forEach(filter=>{
         affichageFiltre(filter); //affiche tous les filtres mis à jour
     })
+    }
     
     //affichage de tous les projets
     gallery.innerHTML="";  //efface les projets précédents
@@ -122,18 +124,17 @@ function affichageProjetModale(projet){
 
         // Au clic sur l'icône poubelle, on recupère l'id du projet pour ensuite le supprimer de l'API
         icone.addEventListener('click', function() {
-            const idProjet = parseInt(icone.id.split('-')[1]); // Extrait l'ID du projet
-            console.log(`Icône cliquée, ID du projet : ${idProjet}`);
-            fetch(`http://localhost:5678/api/works/${idProjet}`, {
+            console.log(`Icône cliquée, ID du projet : ${projet.id}`);
+            fetch(`http://localhost:5678/api/works/${projet.id}`, {
                 method: 'DELETE',
                 headers: {
                     'Accept': '*/*', // Indique que tout type de contenu est accepté
-                    'Authorization':`Bearer ${dataUserConnected.token}`, //ajoute le token d'identification
+                    'Authorization':`Bearer ${dataUserConnected}`, //ajoute le token d'identification
                 }
             })
             .then(response => {
                 if (response.ok) {
-                    console.log(`Projet ${idProjet} supprimé avec succès.`);
+                    console.log(`Projet ${projet.id} supprimé avec succès.`);
                     article.remove(); // Supprime l'article du DOM dans la modale
                 } else {
                     console.error("Erreur lors de la suppression :", response.status);

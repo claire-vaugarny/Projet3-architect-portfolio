@@ -9,7 +9,7 @@ const editMesProjets = document.querySelector('.editMesProjets');
 const modifyMesProjets = document.querySelector('.modifyMesProjets');
 const header = document.querySelector('.header');
 
-const dataUserConnected = window.localStorage.getItem('userData');
+const dataUserConnected = window.localStorage.getItem('token');
 
 const deleteGallery = document.querySelector('.deleteGallery');
 const modaleContainer = document.querySelector('.modaleContainer');
