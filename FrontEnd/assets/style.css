@@ -355,8 +355,9 @@ footer nav ul {
 
 /** bandeau noir **/
 .editMode {
-	width: 100%;
+	width: 100vw; /*prend 100% de la largeur de l'écran*/	
 	height: 59px;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 	color: #FFFFFF;
@@ -364,6 +365,7 @@ footer nav ul {
 
 	position: fixed;
 	top: 0;
+	left: 0;
 }
 
 .editMode i {
@@ -382,20 +384,18 @@ footer nav ul {
 	text-decoration-skip-ink: none;
 }
 
-/** header **/
+/** activeer **/
 .headerActive {
 	margin-top: 109px;
 	/* 50px de base + 59px pour décaler avec le editMode */
 }
 
-/** icon + modifier **/
-.editMesProjetsActive {
-	align-items: center;
-}
+
 
 .modifyMesProjets {
 	margin-left: 1.5em;
 	margin-bottom: 30px;
+	display: flex;
 	/*pour l'alignement avec Mes Projets*/
 }
 

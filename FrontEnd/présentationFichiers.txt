@@ -1,0 +1,28 @@
+Bonjour vous trouverez ici un aperçu du contenu de chaque fichiers .js
+
+- login.js est lié à la page login.html uniquement
+    On y trouve :
+    - le code concernant la gestion du formulaire de connexion
+    - la connexion à l'API pour récupérer le token si le formulaire est correcte
+    - l'affichage d'une alerte si le formulaire rempli n'est pas correcte
+
+Tous les autres fichiers sont liés à index.html
+- Homepage.js
+    On y trouve :
+    - la fonction qui récupère tous les projets de l'API
+    - l'affichage de tous les projets
+    - l'affichage de tous les filtres
+    - gère la connexion/déconnexion de l'utilisateur au clique du "bouton"
+
+- Homepage_edit.js
+    On y trouve :
+    - l'affichage de la Homepage_edit lorsque l'utilisateur est connecté
+    - l'affichage de la Homepage lorsque l'utilisateur est déconnecté
+
+- modale.js
+    On y trouve :
+    - l'affichage de la modale normale (projets avec l'icone poubelle)
+    - gestion de suppression d'un projet
+    - l'affichage de la modale pour l'ajout d'un nouveau projet
+    - gestion d'ajout d'un nouveau projet
+

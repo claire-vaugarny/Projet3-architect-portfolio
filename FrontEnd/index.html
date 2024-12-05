@@ -18,37 +18,14 @@
 </head>
 
 <body>
-	<div class="editMode active">
-		<i class="fa-regular fa-pen-to-square"></i>
-		<p>Mode édition</p>
+	<div class="editMode">
+		<!-- rempli par JS -->
 	</div>
-	<section class="modaleContainer hidden">
-		<div class="galleryModaleContainer">
-			<i class="fa-solid fa-arrow-left"></i>
-			<i class="fa-solid fa-xmark"></i>
-			<p id="modaleTitle">Galerie photo</p>
-			<div class="deleteGallery">
-		</div>
-		<div class="ajoutProjetContainer">
-			<div class="addPhotoContainer">
-				<i class="fa-regular fa-image"></i>
-				<button class="btnAddPhoto">+ Ajouter photo</button>
-				<p class="textUnderBtn">jpg, png : 4mo max</p>
-				<form action="#" method="post" class="formAjoutProjet">
-					<label for="titlePhoto">Titre</label>
-					<input id="titlePhoto" type="text">
-					<label for="categoriesProjet">Catégorie</label>
-					<select id="categoriesProjet" name="category">
-						<!-- ajout des catégories par JS -->
-					</select>
-					<button type="submit" id="btnSubmitProjet">Valider</button>
-				</form>
-			</div>
-		</div>
-		</div>
-		<button id="btnAjoutPhoto" type="button">Ajouter une photo</button>
+	<section class="containerModale">
+		<!-- rempli par JS -->
 	</section>
-	<header class="header headerActive">
+
+	<header class="header">
 		<h1>Sophie Bluel<span>Architecte d'intérieur</span></h1>
 		<nav>
 			<ul>
@@ -77,16 +54,15 @@
 		</section>
 
 		<section id="portfolio">
-			<div class="editMesProjets active">
+			<div class="editMesProjets">
 				<h2>Mes Projets</h2>
-				<div class="modifyMesProjets active">
-					<i class="fa-regular fa-pen-to-square"></i>
-					<p>modifier</p>
-				</div>
+				<!-- rempli par JS -->
 			</div>
-			<menu class="menuFilters hidden">
+			<menu class="menuFilters">
+				<!-- rempli par JS -->
 			</menu>
 			<div class="gallery">
+				<!-- rempli par JS -->
 			</div>
 		</section>
 
@@ -112,10 +88,14 @@
 			</ul>
 		</nav>
 	</footer>
-	<script src="./variables.js"></script>
-	<script src="./projets.js"></script>
-	<script src="./editMode.js"></script>
-	<script src="./ajoutphoto.js"></script>
+	<!-- <script src="./variables.js"></script> -->
+	<script src="./Homepage.js"></script>
+	<script src="./modale.js"></script>
+	<script src="./Homepage_edit.js"></script>
+	<!-- <script src="./login.js"></script> -->
+	<!-- <script src="./projets.js"></script> -->
+	<!-- <script src="./editMode.js"></script> -->
+	<!-- <script src="./ajoutphoto.js"></script> -->
 </body>
 
 </html>

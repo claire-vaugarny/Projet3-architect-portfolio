@@ -1,7 +1,6 @@
-const gallery = document.querySelector('.gallery');
-const menuFilters = document.querySelector('.menuFilters');
 
-const submitBtn = document.getElementById('submit');
+
+
 
 const LoginLogout = document.getElementById('LoginLogout');
 const editMode = document.querySelector('.editMode');

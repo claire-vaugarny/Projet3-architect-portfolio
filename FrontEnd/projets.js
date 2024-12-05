@@ -57,7 +57,6 @@ fetch("http://localhost:5678/api/works").then((response)=>{
     
     //affichage de tous les projets
     gallery.innerHTML="";  //efface les projets précédents
-    deleteGallery.innerHTML="";
 
     projets.forEach(projet => {
         affichageProjet(projet); //affiche tous les projets mis à jour
