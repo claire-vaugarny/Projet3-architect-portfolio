@@ -1,8 +1,9 @@
-//Remarque la gestion de l'affichage des projets en fonction de la connexion de 'lutilsateur a été géré dans Homepage.js
+//Remarque : la gestion de l'affichage des projets en fonction de la connexion de l'utilsateur a été géré dans Homepage.js
 
 const editMode = document.querySelector('.editMode'); //pour bandeau noir
 const editMesProjets = document.querySelector('.editMesProjets'); //pour l'icone et le texte "modifier"
 const header = document.querySelector('.header');
+const containerModale = document.querySelector('.containerModale');
 
 if (token) {
     console.log('Utilisateur connecté')
@@ -43,13 +44,9 @@ function affichageEditMode() {
 
     //click sur modifier, on affiche la modale
     modifyMesProjets.addEventListener('click',()=>{
-        console.log("modifier a été cliqué");
+        containerModale.style.height="100vh";
         showProjetsModale(projets,token);
     });
-
-        // if (projets&&token){
-        // }else{console.log("données nécessaires manquantes")}
-        // })
 }
 
 
@@ -65,7 +62,6 @@ function affichageHomepage() {
     const h2 = document.createElement('h2');
     h2.textContent="Mes Projets";
     editMesProjets.appendChild(h2);
-
 
     //remettre editMesProjets initialement
     editMesProjets.style.display = "block";

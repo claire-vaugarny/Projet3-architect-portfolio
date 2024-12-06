@@ -1,42 +1,28 @@
-const containerModale = document.querySelector('.containerModale');
-// let token = window.localStorage.getItem('token');
-console.log("token : ",token);
-
-// let projets = [];
-
-// fetch("http://localhost:5678/api/works")
-//     .then((response) => response.json())
-//     .then((data) => {
-//         projets = data;
-//         console.log("projets chargés pour la modale : ", projets);
-//     })
-//     .catch((error) => {
-//         console.error("Erreur lors de la récupération des projets :", error);
-//     });
-
-// console.log("Touts les projets : ", projets);
-
-// //lorsque l'on clique à coté de la modale, on vide la modale complètement
-// containerModale.addEventListener('click', ()=>{
-//     containerModale.innerHTML=""; 
-// });
+const modale = document.querySelector('.modale');
+// console.log("token : ",token);
 
 
 async function showProjetsModale(projets,token) {
-    containerModale.innerHTML = ""; //vide la modale de son contenu précédent
+    modale.innerHTML = ""; //vide la modale de son contenu précédent
 
-    const modale = document.createElement('div');
-    modale.classList="modale";
-    
     //ajout bouton croix
     const btnClose = document.createElement('i');
     btnClose.classList = "fa-solid fa-xmark";
     btnClose.id = 'btnClose';
     modale.appendChild(btnClose);
 
-    //au clique sur la croix, on vide le container de la modale complètement
+    //au clique sur la croix, on vide le container de la modale complètement et on cache le container
     btnClose.addEventListener('click',()=>{
-        containerModale.innerHTML="";
+        modale.innerHTML="";
+        containerModale.style.height="0";
+    })
+    //idem au clique sur l'overlay
+    containerModale.addEventListener('click',(event)=>{
+        // Vérifier si le clic a eu lieu en dehors de la modale
+        if (!modale.contains(event.target)) {
+            modale.innerHTML="";
+            containerModale.style.height="0";
+        }
     })
     //ajout "titre" de la modale
     const modaleTitle = document.createElement('p');
@@ -59,41 +45,29 @@ async function showProjetsModale(projets,token) {
         btnTrash.classList.add("fa-solid", "fa-trash-can");
         //si l'on clique sur l'icone trash, on supprime le projet de l'API et de l'affichage dans la modale
         btnTrash.addEventListener("click", () => {
-            console.log(`Icône cliquée, ID du projet : ${projet.id}`);
-            fetch(`http://localhost:5678/api/works/${projet.id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Accept': '*/*', // Indique que tout type de contenu est accepté
-                    'Authorization': `Bearer ${token}`, //ajoute le token d'identification
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    console.log(`Projet ${projet.id} supprimé avec succès.`);
-                    article.remove(); // Supprime l'article du DOM dans la modale
-                } else {
-                    console.error("Erreur lors de la suppression :", response.status);
-                }
-            })
+            deleteProjet(projet);
         });
+        article.appendChild(btnTrash);
         containerProjetsModale.appendChild(article); //ajoute l'article dans la div
     });
     modale.appendChild(containerProjetsModale);
     //ajout du bouton Ajouter une photo
     const btnAddPhoto = document.createElement('button');
+    btnAddPhoto.id = "btnAjoutPhoto";
     btnAddPhoto.textContent = "Ajouter une photo";
     modale.appendChild(btnAddPhoto);
+    btnAddPhoto.addEventListener('click',(event)=>{
+        event.stopPropagation(); //empèche la propagation pour ne pas "fermer" la modale au clique du bouton
+        addProjetModale(projets);
+    })
 
-    containerModale.appendChild(modale);
 }
 
-// showProjetsModale(projets);
-
 async function addProjetModale(projets) {
-    containerModale.innerHTML = ""; //vide la modale de son contenu précédent
-
-    const modale = document.createElement('div');
-    modale.classList="modale";
+    // console.log('bouton cliqué')
+    // const btnClose = document.getElementById('btnClose');
+    // modale.remove(btnClose);
+    modale.innerHTML = ""; //vide la modale de son contenu précédent
 
     //ajout flèche gauche
     const leftArrow = document.createElement('i');
@@ -114,7 +88,8 @@ async function addProjetModale(projets) {
 
     //au clique sur la croix, on vide le container de la modale complètement
     btnClose.addEventListener('click',()=>{
-        containerModale.innerHTML="";
+        modale.innerHTML="";
+        containerModale.style.height="0";
     })
 
     //ajout "titre" de la modale
@@ -190,7 +165,36 @@ async function addProjetModale(projets) {
     btnSubmitNew.textContent = "Valider"
     formTitleCategory.appendChild (btnSubmitNew);
     modale.appendChild(formTitleCategory);
+
+
+
 }
 
-// addProjetModale()
+
+function deleteProjet(projet){
+    console.log(`Icône cliquée, ID du projet : ${projet.id}`);
+    fetch(`http://localhost:5678/api/works/${projet.id}`, {
+        method: 'DELETE',
+        headers: {
+            'Accept': '*/*', // Indique que tout type de contenu est accepté
+            'Authorization': `Bearer ${token}`, //ajoute le token d'identification
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log(`Projet ${projet.id} supprimé avec succès.`);
+            console.log("projets avant suppression",projets)
+            const index = projets.findIndex(element => element.id === projet.id );
+            projets.splice(index,1);  //supprime le projet de tous les projets
+            console.log("projets après suppression",projets)
+            
+            showProjetsModale(projets,token); //mise à jour de l'affichage de la modale
+        } else {
+            console.error("Erreur lors de la suppression :", response.status);
+        }
+    })
+    .catch(error => {
+        console.error('Erreur réseau lors de la suppression du projet:', error);
+    })
+}
 

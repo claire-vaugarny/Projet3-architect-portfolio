@@ -1,36 +1,38 @@
-<div class="modale">
-    <!-- Flèche gauche -->
-    <i class="fa-solid fa-arrow-left" id="leftArrow"></i>
-    
-    <!-- Bouton croix -->
-    <i class="fa-solid fa-xmark" id="btnClose"></i>
-    
-    <!-- Titre de la modale -->
-    <p id="modaleTitle">Ajout photo</p>
-    
-    <!-- Partie photo -->
-    <div class="containerAddPhoto">
-        <i id="fa-regular fa-image"></i> <!-- Icône représentant une image -->
-        <button id="btnURLPhoto">+ Ajouter photo</button> <!-- Bouton pour ajouter une photo -->
-        <p id="textUnderBtn">jpg, png : 4mo max</p> <!-- Texte sous le bouton -->
+<div class="containerModale">
+    <div class="modale">
+        <!-- Flèche gauche -->
+        <i class="fa-solid fa-arrow-left" id="leftArrow"></i>
+
+        <!-- Bouton croix -->
+        <i class="fa-solid fa-xmark" id="btnClose"></i>
+
+        <!-- Titre de la modale -->
+        <p id="modaleTitle">Ajout photo</p>
+
+        <!-- Partie photo -->
+        <div class="containerAddPhoto">
+            <i id="fa-regular fa-image"></i> <!-- Icône représentant une image -->
+            <button id="btnURLPhoto">+ Ajouter photo</button> <!-- Bouton pour ajouter une photo -->
+            <p id="textUnderBtn">jpg, png : 4mo max</p> <!-- Texte sous le bouton -->
+        </div>
+
+        <!-- Formulaire pour le titre et la catégorie -->
+        <form class="formTitleCategory" method="post" action="#">
+            <!-- Label et input pour le titre -->
+            <label for="newTitle">Titre de la photo :</label>
+            <input id="newTitle" type="text">
+
+            <!-- Label et select pour la catégorie -->
+            <label for="titleCategory">Choisissez une catégorie :</label>
+            <select id="titleCategory" class="titleCategry">
+                <!-- Options ajoutées dynamiquement par l'API -->
+                <option value="1">Objets</option>
+                <option value="2">Appartements</option>
+                <option value="3">Hotels & restaurants</option>
+            </select>
+
+            <!-- Bouton de soumission -->
+            <button type="submit" id="btnSubmitNew">Valider</button>
+        </form>
     </div>
-
-    <!-- Formulaire pour le titre et la catégorie -->
-    <form class="formTitleCategory" method="post" action="#">
-        <!-- Label et input pour le titre -->
-        <label for="newTitle">Titre de la photo :</label>
-        <input id="newTitle" type="text">
-        
-        <!-- Label et select pour la catégorie -->
-        <label for="titleCategory">Choisissez une catégorie :</label>
-        <select id="titleCategory" class="titleCategry">
-            <!-- Options ajoutées dynamiquement par l'API -->
-            <option value="1">Objets</option>
-            <option value="2">Appartements</option>
-            <option value="3">Hotels & restaurants</option>
-        </select>
-
-        <!-- Bouton de soumission -->
-        <button type="submit" id="btnSubmitNew">Valider</button>
-    </form>
 </div>

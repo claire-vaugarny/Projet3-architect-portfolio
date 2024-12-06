@@ -384,10 +384,9 @@ footer nav ul {
 	text-decoration-skip-ink: none;
 }
 
-/** activeer **/
 .headerActive {
 	margin-top: 109px;
-	/* 50px de base + 59px pour décaler avec le editMode */
+	/* 50px de base + 59px pour décaler avec le bandeau noir */
 }
 
 
@@ -407,27 +406,36 @@ footer nav ul {
 
 
 /**** La modale *****/
-.modaleContainer{
-	width: 100%;
-	padding: 20px 50px;
-	display:flex;
-	flex-direction: column;
-	justify-content: center;
-	position: relative;
-}
-.fa-arrow-left{
-	position: absolute;
-	font-size: 12px;
-	top: 0;
+.containerModale{
+	position: fixed;
+	margin: 0;
+	height: 0;
+	width: 100vw;
+	background-color: rgba(0,0,0,0.5);
+	top: 59px; /*décalage par rapport au bandeau noir*/
 	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-.fa-xmark{
+.modale{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	position: relative;
+    background-color: white;
+	border-radius: 10px;
+    height: fit-content;
+    width: 50%;
+}
+#btnClose{
 	position: absolute;
 	font-size: 12px;
-	right: 0;
-	top: 0;
+	right: 2em;
+	top: 2em;
 }
-.modaleContainer p {
+#modaleTitle {
+	margin: 20px 0px;
 	font-family: 'Work Sans';
 	font-size: 26px;
 	font-weight: 400;
@@ -436,6 +444,28 @@ footer nav ul {
 	text-underline-position: 'from-font';
 	text-decoration-skip-ink: none;
 	margin-bottom: 20px;
+}
+.containerProjetsModale{
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 10px 20px;
+	border-bottom:1px solid #B3B3B3;
+}
+.containerProjetsModale article{
+	width: 20%;
+	margin: 5px;
+}
+.containerProjetsModale img{
+	width: 100%;
+}
+.fa-arrow-left{
+	position: absolute;
+	font-size: 12px;
+	top: 0;
+	left: 0;
 }
 .deleteGallery{
 	/* display: flex;
