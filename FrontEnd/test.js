@@ -73,8 +73,7 @@ async function addProjetModale(projets) {
     modale.appendChild(leftArrow);
 
         //Au clique sur la flèche gauche, on revient à la "première modale"  
-        leftArrow.addEventListener('click', (event) => {
-            event.stopPropagation(); //empèche la propagation pour ne pas "fermer" la modale au clique du bouton
+        leftArrow.addEventListener('click', () => {
             showProjetsModale(projets);
         });
 

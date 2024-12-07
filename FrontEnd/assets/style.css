@@ -421,12 +421,15 @@ footer nav ul {
 .modale{
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	flex-direction: column;
 	position: relative;
     background-color: white;
 	border-radius: 10px;
     height: fit-content;
     width: 50%;
+	height: 70%;
+	gap: 40px;
 }
 #btnClose{
 	position: absolute;
@@ -461,11 +464,11 @@ footer nav ul {
 .containerProjetsModale img{
 	width: 100%;
 }
-.fa-arrow-left{
+#leftArrow{
 	position: absolute;
 	font-size: 12px;
-	top: 0;
-	left: 0;
+	top: 2em;
+	left: 2em;
 }
 .deleteGallery{
 	/* display: flex;
@@ -496,14 +499,92 @@ footer nav ul {
 	color: #FFFFFF;
 	border-radius: 7px;
 }
-#btnAjoutPhoto {
+
+/*bouton dans la modale*/
+#btnAjoutPhoto,#btnSubmitNew,#btnURLPhoto{
+	width: fit-content;
 	border-style: none;
 	font: 700 14px 'Syne';
 	line-height: 16.8px;
-	color: #FFFFFF;
-	background-color: #1D6154;
-	margin: 2em auto;
 	padding: 10px 30px;
 	text-align: center;
 	border-radius: 60px;
+}
+#btnAjoutPhoto{
+	background-color: #1D6154;
+	color: #FFFFFF;
+}
+#btnURLPhoto{
+	background-color: #CBD6DC;
+	color: #306685;
+}
+#btnSubmitNew{
+	background-color: #A7A7A7;
+	color: #FFFFFF;
+}
+.form{
+	padding-bottom: 2rem;
+	border-bottom: 1px solid #B3B3B3
+}
+/*modale ajout photo*/
+.containerAddPhoto{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
+	background-color: #E8F1F6;
+	gap: 1em;
+	height: 300px;
+}
+.containerAddPhoto img {
+    height: 100%; /* L'image prend 100% de la hauteur du conteneur */
+    width: auto; /* La largeur s'adapte automatiquement pour garder les proportions */
+    object-fit: contain; /* Assure que l'image est contenue sans être coupée */
+    object-position: center; /* Centre l'image si elle est plus petite que le conteneur */
+}
+#iconeImage{
+	color: #B9C5CC;
+	text-align: center;
+	font-size: 5em;
+	margin-top: 2rem;
+}
+#textUnderBtn{
+	margin-bottom: 2em;
+	font-size: 10px;
+	font-weight: 400;
+	line-height: 11.73px;
+	text-align: center;
+}
+
+
+.form{
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	/* align-items: center; */
+	width: 80%;
+}
+/*label et input dans la modale*/
+.modale label,#btnURLPhoto{
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16.42px;
+	color: #3D3D3D;
+}
+.modale label{
+	text-align: left;
+	margin: 1rem 0;
+}
+
+.modale input,.modale select{
+	background: #FFFFFF;
+	box-shadow: 0px 4px 14px 0px #00000017;
+	border: none;
+	padding: 1em;
+	color: #444444;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 16.42px;
+	text-align: left;
 }
