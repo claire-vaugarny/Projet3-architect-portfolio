@@ -1,5 +1,4 @@
 const modale = document.querySelector('.modale');
-// console.log("token : ",token);
 
 
 async function showProjetsModale(projets,token) {
@@ -113,6 +112,7 @@ async function addProjetModale(projets) {
     iconeImage.id='iconeImage'
     containerAddPhoto.appendChild(iconeImage);
     
+    let selectedFile = null;
     const inputURLPhoto = document.createElement('input');
     inputURLPhoto.name = "NewURL"
     inputURLPhoto.type = 'file'
@@ -122,11 +122,11 @@ async function addProjetModale(projets) {
     containerAddPhoto.appendChild(inputURLPhoto);
     inputURLPhoto.addEventListener('change', (event) => {
         event.preventDefault();
-        console.log('la')
-        addPhoto(inputURLPhoto,containerAddPhoto,btnURLPhoto,textUnderBtn,iconeImage)
+        selectedFile = addPhoto(inputURLPhoto,containerAddPhoto,btnURLPhoto,textUnderBtn,iconeImage)
     });
 
     const btnURLPhoto = document.createElement('button');
+    btnURLPhoto.type = "button";
     btnURLPhoto.id = 'btnURLPhoto';
     btnURLPhoto.textContent = "+ Ajouter photo";
     btnURLPhoto.addEventListener('click', (event) => {
@@ -146,11 +146,12 @@ async function addProjetModale(projets) {
     labelNewTitle.textContent = "Titre"
     form.appendChild(labelNewTitle);
 
-    const inputNewTitle =document.createElement('input');
-    inputNewTitle.type = "text";
-    inputNewTitle.name = "NewTitle"
-    // inputNewTitle.required = true;
-    form.appendChild(inputNewTitle);
+    const NewTitle =document.createElement('input');
+    NewTitle.type = "text";
+    NewTitle.id = "NewTitle"
+    NewTitle.name = "NewTitle"
+    // NewTitle.required = true;
+    form.appendChild(NewTitle);
 
             //pour le choix de la catégorie
     const labelNewCategory = document.createElement('label');
@@ -159,11 +160,19 @@ async function addProjetModale(projets) {
     form.appendChild(labelNewCategory);
 
     const select = document.createElement('select');
+    select.id = "select";
     select.name = "NewCategory";
-    // select.required = true;
+    select.required = true;
     form.appendChild(select)
 
-    fetch('http://localhost:5678/api/categories') //ajoute une option pour chaque catégorie récupérée par l'API
+    //première option vide, sélectionnée par défaut, ne peut pas être rechoisi après un changement
+    const option = document.createElement('option');
+    option.value="";
+    option.disabled = true;
+    option.selected = true;
+    select.appendChild(option);
+    //ajoute une option pour chaque catégorie récupérée par l'API
+    fetch('http://localhost:5678/api/categories') 
     .then((response) => response.json())
     .then((data) => {
         categories = data;
@@ -185,6 +194,45 @@ async function addProjetModale(projets) {
     btnSubmitNew.id="btnSubmitNew";
     btnSubmitNew.textContent = "Valider"
     modale.appendChild (btnSubmitNew);
+
+    btnSubmitNew.addEventListener('click',(event)=>{
+        event.preventDefault;
+        if (!selectedFile) {
+            window.alert("Veuillez sélectionner une image.");
+            return;
+        }
+    
+        const NewTitleValue = NewTitle.value;
+        const selectValue = select.value;   
+        // Vérification de la catégorie et du titre
+        if (NewTitleValue === "" || selectValue === "") {
+            window.alert("Veuillez remplir tous les champs.");
+            return;
+        }
+
+        const formData = new FormData();
+        // const fileUrl = URL.createObjectURL(selectedFile);
+        formData.append("imageURL",selectedFile,selectedFile.name);
+        formData.append("title",NewTitleValue.toString());
+        formData.append("category",parseInt(selectValue));
+        console.log(token)
+
+        fetch(`http://localhost:5678/api/works`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}` //ajoute le token d'identification
+            },
+            body: formData
+        })
+        .then(response =>response.json())
+        .then(data =>{
+            console.log('Réponse : ',data);
+        })
+        .catch(error =>{
+            console.log('Erreur:' ,error);
+        })
+    })
 }
 
 
@@ -216,22 +264,36 @@ function deleteProjet(projet){
 }
 
 function addPhoto(inputURLPhoto,containerAddPhoto,btnURLPhoto,textUnderBtn,iconeImage){
-    console.log('ici');
-    //creer l'URL temporaire de l'image
     const selectedFile = inputURLPhoto.files[0];
+    if(!selectedFile){
+        window.alert("Vous n'avez pas sélectionner d'image.");
+        return; //arrete la fonction
+    }
+    // Vérification de la taille de l'image (4Mo = 4 * 1024 * 1024 octets)
+    const maxSize = 4 * 1024 * 1024; // 4 Mo
+    if (selectedFile.size > maxSize) {
+    window.alert("L'image sélectionnée est trop grande. Veuillez choisir une image de moins de 4 Mo.");
+    return; // Arrête la fonction si l'image est trop grande
+    }
+    
+    //sinon on peut créer l'image dans le DOM
     const fileUrl = URL.createObjectURL(selectedFile);
-    //créer l'image dans le DOM
     const img = document.createElement('img');
     img.src=fileUrl;
     img.alt="apercu de l'image";
     containerAddPhoto.appendChild(img);
     // Révoquer l'URL temporaire une fois l'image ajoutée
-    // URL.revokeObjectURL(fileUrl);
+    img.onload = function() {
+        URL.revokeObjectURL(fileUrl); // Révoquer l'URL après le chargement de l'image
+    }
     //cache les autres éléments du container
     iconeImage.style.display = 'none'
     btnURLPhoto.style.display = 'none';
     textUnderBtn.style.display = 'none';
     inputURLPhoto.style.display ='none';
+
+    return selectedFile;
     
 }
+
 
