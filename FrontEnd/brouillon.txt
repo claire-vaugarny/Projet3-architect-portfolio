@@ -1,3 +1,38 @@
+const valideButton = document.createElement("button")
+valideButton.disabled = true
+valideButton.className= 'inactiveButton'
+
+const checkInput = () => {
+if(inputTitle.target.value && inputCategory.value && inputPhoto.files.length>=1) {
+    valideButton.disabled = false
+    valideButton.className= 'activeButton'
+}  else {
+    valideButton.disabled = true
+    valideButton.className= 'inactiveButton'
+}
+}
+
+inputTitle.addEventListener('change', checkInput)
+inputCategory.addEventListener('change', checkInput)
+inputPhoto.addEventListener('change', checkInput)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .modifyMesProjets {
     /* Votre style de base pour la div */
     opacity: 1;

@@ -118,6 +118,7 @@ async function addProjetModale(projets) {
     inputURLPhoto.type = 'file'
     inputURLPhoto.accept = 'image/jpg, image/png'; // Accepte les fichiers JPG et PNG uniquement
     inputURLPhoto.required = true ;
+    inputURLPhoto.className = "displayNone";
     // inputURLPhoto.style.display = 'none'; //on ne peut pas le modifier directement donc on va le cacher et utiliser un bouton "classique"
     containerAddPhoto.appendChild(inputURLPhoto);
     inputURLPhoto.addEventListener('change', (event) => {
@@ -212,9 +213,12 @@ async function addProjetModale(projets) {
 
         const formData = new FormData();
         // const fileUrl = URL.createObjectURL(selectedFile);
-        formData.append("imageURL",selectedFile,selectedFile.name);
-        formData.append("title",NewTitleValue.toString());
-        formData.append("category",parseInt(selectValue));
+        console.log(selectedFile)
+        console.log(NewTitleValue)
+        console.log(selectValue)
+        formData.append("image",selectedFile);
+        formData.append("title",NewTitleValue);
+        formData.append("category",selectValue);
         console.log(token)
 
         fetch(`http://localhost:5678/api/works`, {
@@ -227,6 +231,8 @@ async function addProjetModale(projets) {
         })
         .then(response =>response.json())
         .then(data =>{
+            addProjetModale(projets);
+            loadProjets();
             console.log('Réponse : ',data);
         })
         .catch(error =>{
@@ -245,15 +251,13 @@ function deleteProjet(projet){
             'Authorization': `Bearer ${token}`, //ajoute le token d'identification
         }
     })
-    .then(response => {
+    .then(async(response) => {
         if (response.ok) {
             console.log(`Projet ${projet.id} supprimé avec succès.`);
             console.log("projets avant suppression",projets)
-            const index = projets.findIndex(element => element.id === projet.id );
-            projets.splice(index,1);  //supprime le projet de tous les projets
-            console.log("projets après suppression",projets)
             
-            showProjetsModale(projets,token); //mise à jour de l'affichage de la modale
+            await loadProjets();
+            showProjetsModale(projets); //mise à jour de l'affichage de la modale
         } else {
             console.error("Erreur lors de la suppression :", response.status);
         }

@@ -10,7 +10,7 @@ async function loadProjets() {
         const response = await fetch("http://localhost:5678/api/works");
         projets = await response.json();
         console.log("Projets chargés : ", projets);
-        
+        gallery.innerHTML="";
         // Afficher tous les projets au chargement de la page
         projets.forEach(projet => {
             affichageProjet(projet);

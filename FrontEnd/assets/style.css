@@ -412,7 +412,8 @@ footer nav ul {
 	height: 0;
 	width: 100vw;
 	background-color: rgba(0,0,0,0.5);
-	top: 59px; /*décalage par rapport au bandeau noir*/
+ /*décalage par rapport au bandeau noir*/
+	top:0;
 	left: 0;
 	display: flex;
 	justify-content: center;
@@ -428,14 +429,18 @@ footer nav ul {
 	border-radius: 10px;
     height: fit-content;
     width: 50%;
-	height: 70%;
+	height: 90%;
 	gap: 40px;
+	/* overflow: scroll; */
 }
 #btnClose{
 	position: absolute;
 	font-size: 12px;
 	right: 2em;
 	top: 2em;
+}
+.displayNone{
+	display: none;
 }
 #modaleTitle {
 	margin: 20px 0px;
@@ -451,15 +456,18 @@ footer nav ul {
 .containerProjetsModale{
 	box-sizing: border-box;
 	display: flex;
-	justify-content: center;
+	/* justify-content: center; */
 	align-items: center;
 	flex-wrap: wrap;
 	margin: 10px 20px;
 	border-bottom:1px solid #B3B3B3;
+	overflow-y: scroll;
 }
 .containerProjetsModale article{
-	width: 20%;
-	margin: 5px;
+	width: 25%;
+	box-sizing: border-box;
+	padding: 5px;
+	position: relative;
 }
 .containerProjetsModale img{
 	width: 100%;
