@@ -9,7 +9,6 @@ async function loadProjets() {
     try {
         const response = await fetch("http://localhost:5678/api/works");
         projets = await response.json();
-        console.log("Projets chargés : ", projets);
         gallery.innerHTML="";
         // Afficher tous les projets au chargement de la page
         projets.forEach(projet => {
@@ -58,7 +57,6 @@ function gestionDesFiltres(projets) {
         const categories = projets.map(projet => projet.category.name) //création du tableau avec toutes les catégories avec doublons
         let categorieSansDoublons = new Set(categories); //création du set sans doublons
         let categoriesAvecTous = ['Tous', ...Array.from(categorieSansDoublons)]; //transforme leSet en tableau et ajoute la catégorie Tous
-        console.log("filtres : ",categoriesAvecTous);
 
         menuFilters.innerHTML = ""; //efface les filtres précédents
         categoriesAvecTous.forEach(filter => {

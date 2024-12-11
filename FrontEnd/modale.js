@@ -72,9 +72,13 @@ async function addProjetModale(projets) {
     modale.appendChild(leftArrow);
 
         //Au clique sur la flèche gauche, on revient à la "première modale"  
-        leftArrow.addEventListener('click', (event) => {
-            event.stopPropagation(); //empèche la propagation pour ne pas "fermer" la modale au clique du bouton
-            showProjetsModale(projets);
+        leftArrow.addEventListener('click', async (event) => {
+            event.stopPropagation(); // Empêche la propagation pour ne pas fermer la modale au clic du bouton
+
+            // Chargement des projets pour prendre en compte les projets ajoutés
+            const response = await fetch("http://localhost:5678/api/works");
+            const works = await response.json();
+            await showProjetsModale(works);
         });
 
     //ajout bouton croix
@@ -111,7 +115,8 @@ async function addProjetModale(projets) {
     iconeImage.classList = "fa-regular fa-image";
     iconeImage.id='iconeImage'
     containerAddPhoto.appendChild(iconeImage);
-    
+
+            //pour l'image
     let selectedFile = null;
     const inputURLPhoto = document.createElement('input');
     inputURLPhoto.name = "NewURL"
@@ -119,7 +124,6 @@ async function addProjetModale(projets) {
     inputURLPhoto.accept = 'image/jpg, image/png'; // Accepte les fichiers JPG et PNG uniquement
     inputURLPhoto.required = true ;
     inputURLPhoto.className = "displayNone";
-    // inputURLPhoto.style.display = 'none'; //on ne peut pas le modifier directement donc on va le cacher et utiliser un bouton "classique"
     containerAddPhoto.appendChild(inputURLPhoto);
     inputURLPhoto.addEventListener('change', (event) => {
         event.preventDefault();
@@ -151,7 +155,6 @@ async function addProjetModale(projets) {
     NewTitle.type = "text";
     NewTitle.id = "NewTitle"
     NewTitle.name = "NewTitle"
-    // NewTitle.required = true;
     form.appendChild(NewTitle);
 
             //pour le choix de la catégorie
@@ -177,7 +180,6 @@ async function addProjetModale(projets) {
     .then((response) => response.json())
     .then((data) => {
         categories = data;
-        console.log("catégories chargées pour la modale : ", categories);
         categories.forEach(category => {
             const option = document.createElement('option');
             option.value=category.id;
@@ -193,19 +195,26 @@ async function addProjetModale(projets) {
     btnSubmitNew.type="submit";
     btnSubmitNew.form="form"; //lier à l'id du formulaire m^me s'il n'est pas dedans
     btnSubmitNew.id="btnSubmitNew";
-    btnSubmitNew.textContent = "Valider"
+    btnSubmitNew.classList.add('inactiveButton');
+    btnSubmitNew.textContent = "Valider";
     modale.appendChild (btnSubmitNew);
 
+    
+    // Écouteur d'événement sur les 3 champs du formulaire. Si les 3 sont remplis, alors on change le bouton "Valider"
+    inputURLPhoto.addEventListener('change', () => {checkFieldsFilled(inputURLPhoto);});
+    NewTitle.addEventListener('input', () => {checkFieldsFilled(inputURLPhoto);});
+    select.addEventListener('change', () => {checkFieldsFilled(inputURLPhoto);});
+
     btnSubmitNew.addEventListener('click',(event)=>{
-        event.preventDefault;
+        event.preventDefault();
+        //véfication que l'input contient une image
         if (!selectedFile) {
             window.alert("Veuillez sélectionner une image.");
             return;
         }
-    
-        const NewTitleValue = NewTitle.value;
-        const selectValue = select.value;   
         // Vérification de la catégorie et du titre
+        const NewTitleValue = String(NewTitle.value);
+        const selectValue = select.value;   
         if (NewTitleValue === "" || selectValue === "") {
             window.alert("Veuillez remplir tous les champs.");
             return;
@@ -213,14 +222,10 @@ async function addProjetModale(projets) {
 
         const formData = new FormData();
         // const fileUrl = URL.createObjectURL(selectedFile);
-        console.log(selectedFile)
-        console.log(NewTitleValue)
-        console.log(selectValue)
         formData.append("image",selectedFile);
         formData.append("title",NewTitleValue);
         formData.append("category",selectValue);
-        console.log(token)
-
+        
         fetch(`http://localhost:5678/api/works`, {
             method: 'POST',
             headers: {
@@ -233,7 +238,6 @@ async function addProjetModale(projets) {
         .then(data =>{
             addProjetModale(projets);
             loadProjets();
-            console.log('Réponse : ',data);
         })
         .catch(error =>{
             console.log('Erreur:' ,error);
@@ -243,7 +247,6 @@ async function addProjetModale(projets) {
 
 
 function deleteProjet(projet){
-    console.log(`Icône cliquée, ID du projet : ${projet.id}`);
     fetch(`http://localhost:5678/api/works/${projet.id}`, {
         method: 'DELETE',
         headers: {
@@ -253,9 +256,6 @@ function deleteProjet(projet){
     })
     .then(async(response) => {
         if (response.ok) {
-            console.log(`Projet ${projet.id} supprimé avec succès.`);
-            console.log("projets avant suppression",projets)
-            
             await loadProjets();
             showProjetsModale(projets); //mise à jour de l'affichage de la modale
         } else {
@@ -300,4 +300,16 @@ function addPhoto(inputURLPhoto,containerAddPhoto,btnURLPhoto,textUnderBtn,icone
     
 }
 
+//vérifie si les 3 champs du formulaire sont remplis et modifie le bouton "Valider" en conséquence
+function checkFieldsFilled(inputURLPhoto) {
+    const imageSelect = inputURLPhoto.files[0];
 
+    if (NewTitle.value && select.value&&imageSelect){
+        console.log("3 champs remplis");
+        btnSubmitNew.classList.add('activeButton');
+        btnSubmitNew.classList.remove('inactiveButton');
+    }else{
+        btnSubmitNew.classList.add('inactiveButton');
+        btnSubmitNew.classList.remove('activeButton');
+    }
+}

@@ -6,10 +6,8 @@ const header = document.querySelector('.header');
 const containerModale = document.querySelector('.containerModale');
 
 if (token) {
-    console.log('Utilisateur connecté')
     affichageEditMode();
 } else {
-    console.log('Utilisateur déconnecté')
     affichageHomepage();
 }
 

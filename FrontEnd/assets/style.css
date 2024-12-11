@@ -270,7 +270,6 @@ li:hover {
 
 .gallery img {
 	width: 100%;
-
 }
 
 /**** section contact et login sur la page correspondante ****/
@@ -412,7 +411,6 @@ footer nav ul {
 	height: 0;
 	width: 100vw;
 	background-color: rgba(0,0,0,0.5);
- /*décalage par rapport au bandeau noir*/
 	top:0;
 	left: 0;
 	display: flex;
@@ -429,42 +427,48 @@ footer nav ul {
 	border-radius: 10px;
     height: fit-content;
     width: 50%;
-	height: 90%;
-	gap: 40px;
-	/* overflow: scroll; */
+	height: 80%;
 }
 #btnClose{
 	position: absolute;
-	font-size: 12px;
+	font-size: 1.5em;
 	right: 2em;
 	top: 2em;
 }
-.displayNone{
-	display: none;
-}
 #modaleTitle {
-	margin: 20px 0px;
+	height: 10%;
+	display: flex;
+	align-items: center;
+	margin-top: 15px;
 	font-family: 'Work Sans';
 	font-size: 26px;
 	font-weight: 400;
 	line-height: 30.5px;
 	text-align: center;
-	text-underline-position: 'from-font';
 	text-decoration-skip-ink: none;
 	margin-bottom: 20px;
 }
+
+/* modale 1 */
 .containerProjetsModale{
 	box-sizing: border-box;
-	display: flex;
-	/* justify-content: center; */
-	align-items: center;
+	height: 70%;
+	width: 80%;
+	display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 0; /* Supprimer l'espacement entre les colonnes */
+    grid-row-gap: 0; /* Supprimer l'espacement entre les lignes */
+	/* display: flex;
+	align-items: left;
 	flex-wrap: wrap;
-	margin: 10px 20px;
+	gap: 0; */
+
 	border-bottom:1px solid #B3B3B3;
-	overflow-y: scroll;
+	/* overflow-y: scroll; */
 }
 .containerProjetsModale article{
-	width: 25%;
+	width: 100%;
+	height: fit-content;
 	box-sizing: border-box;
 	padding: 5px;
 	position: relative;
@@ -474,31 +478,11 @@ footer nav ul {
 }
 #leftArrow{
 	position: absolute;
-	font-size: 12px;
+	font-size: 1.5em;
 	top: 2em;
 	left: 2em;
 }
-.deleteGallery{
-	/* display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	width: 100%; */
-	display: grid;
-	grid-template-columns: repeat(5,1fr);
-	column-gap: 15px; /* Espace entre les colonnes */
-    row-gap: 25px;    /* Espace entre les lignes */
-	padding-bottom: 50px;
-	border-bottom:1px solid #B3B3B3;
-}
-.deleteCard{
-	position: relative;
-	margin: 10px;
-}
-.deleteCard img{
-	width: 100%;
-	object-fit: contain;
-}
+
 .fa-trash-can{
 	position: absolute;
 	transform: translate(-120%,20%);
@@ -508,33 +492,51 @@ footer nav ul {
 	border-radius: 7px;
 }
 
-/*bouton dans la modale*/
+/*boutons dans la modale*/
 #btnAjoutPhoto,#btnSubmitNew,#btnURLPhoto{
-	width: fit-content;
 	border-style: none;
-	font: 700 14px 'Syne';
-	line-height: 16.8px;
-	padding: 10px 30px;
 	text-align: center;
 	border-radius: 60px;
+	padding: 10px 30px;
+}
+#btnAjoutPhoto,#btnSubmitNew{
+	width: fit-content;
+	font: 700 14px 'Syne';
+	line-height: 16.8px;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+#btnURLPhoto{
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16.42px;
+	background-color: #CBD6DC;
+	color: #306685;
 }
 #btnAjoutPhoto{
 	background-color: #1D6154;
 	color: #FFFFFF;
 }
-#btnURLPhoto{
-	background-color: #CBD6DC;
-	color: #306685;
-}
 #btnSubmitNew{
-	background-color: #A7A7A7;
+	width: 40%;
 	color: #FFFFFF;
 }
-.form{
-	padding-bottom: 2rem;
-	border-bottom: 1px solid #B3B3B3
+.activeButton{
+	background-color: #1D6154;
 }
-/*modale ajout photo*/
+.inactiveButton{
+	background-color: #A7A7A7;
+}
+
+/*modale 2*/
+.form{
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 2rem;
+	border-bottom: 1px solid #B3B3B3;
+	height: 70%;
+	width: 80%;
+}
 .containerAddPhoto{
 	display: flex;
 	flex-direction: column;
@@ -546,8 +548,8 @@ footer nav ul {
 	height: 300px;
 }
 .containerAddPhoto img {
-    height: 100%; /* L'image prend 100% de la hauteur du conteneur */
-    width: auto; /* La largeur s'adapte automatiquement pour garder les proportions */
+	height: 100%;
+	width: auto;
     object-fit: contain; /* Assure que l'image est contenue sans être coupée */
     object-position: center; /* Centre l'image si elle est plus petite que le conteneur */
 }
@@ -565,16 +567,8 @@ footer nav ul {
 	text-align: center;
 }
 
-
-.form{
-	display: flex;
-	flex-direction: column;
-	/* justify-content: center; */
-	/* align-items: center; */
-	width: 80%;
-}
 /*label et input dans la modale*/
-.modale label,#btnURLPhoto{
+.modale label{
 	font-size: 14px;
 	font-weight: 500;
 	line-height: 16.42px;
@@ -584,7 +578,9 @@ footer nav ul {
 	text-align: left;
 	margin: 1rem 0;
 }
-
+.displayNone{
+	display: none; /*pour cacher l'input de l'image*/
+}
 .modale input,.modale select{
 	background: #FFFFFF;
 	box-shadow: 0px 4px 14px 0px #00000017;
