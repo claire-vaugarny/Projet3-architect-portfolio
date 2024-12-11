@@ -305,7 +305,6 @@ function checkFieldsFilled(inputURLPhoto) {
     const imageSelect = inputURLPhoto.files[0];
 
     if (NewTitle.value && select.value&&imageSelect){
-        console.log("3 champs remplis");
         btnSubmitNew.classList.add('activeButton');
         btnSubmitNew.classList.remove('inactiveButton');
     }else{
