@@ -31,7 +31,14 @@ async function showProjetsModale(projets,token) {
     
     //ajout de chaque projet un à un avec l'icone poubelle dont le click supprime le projet
     const containerProjetsModale = document.createElement('div');
-    containerProjetsModale.classList="containerProjetsModale";
+    if (projets.length>10){
+        containerProjetsModale.classList="containerProjetsModale scrolly";
+
+        
+    }else{
+        containerProjetsModale.classList="containerProjetsModale";
+
+    }
     projets.forEach(projet => {
         const article = document.createElement('article');
         

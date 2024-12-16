@@ -452,7 +452,7 @@ footer nav ul {
 /* modale 1 */
 .containerProjetsModale{
 	box-sizing: border-box;
-	height: 70%;
+	height: 550px;
 	width: 80%;
 	display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -464,7 +464,9 @@ footer nav ul {
 	gap: 0; */
 
 	border-bottom:1px solid #B3B3B3;
-	/* overflow-y: scroll; */
+}
+.scrolly{
+	overflow-y: scroll;
 }
 .containerProjetsModale article{
 	width: 100%;
