@@ -186,6 +186,9 @@ nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
+nav img{
+	height: 1.5em;
+}
 
 li:hover {
 	color: #B1663C;
@@ -458,10 +461,6 @@ footer nav ul {
     grid-template-columns: repeat(5, 1fr);
     grid-column-gap: 0; /* Supprimer l'espacement entre les colonnes */
     grid-row-gap: 0; /* Supprimer l'espacement entre les lignes */
-	/* display: flex;
-	align-items: left;
-	flex-wrap: wrap;
-	gap: 0; */
 
 	border-bottom:1px solid #B3B3B3;
 }
@@ -492,6 +491,7 @@ footer nav ul {
 	background-color: #000000;
 	color: #FFFFFF;
 	border-radius: 7px;
+	font-size: 0.9em;
 }
 
 /*boutons dans la modale*/
