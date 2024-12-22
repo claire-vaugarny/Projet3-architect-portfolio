@@ -100,11 +100,9 @@ LoginLogout.addEventListener('click',()=>{
         window.location.href = './login.html'; //redirige vers la page de connexion si l'utilisateur est déconnecté
     }else{
         localStorage.clear(); //supprime le token du localStroage et donc "déconnecte" l'utilisateur. faisable ici avec clear() car il n'y qu'un seul utilisateur
-        LoginLogout.textContent = "login";
+ 
+        // Recharger la page après l'effacement des données
+        window.location.reload();
 
-    
-        // window.location.href = './index.html'; 
-
-        affichageHomepage(); //recharge la page après l'effacement des données
     }
 });
