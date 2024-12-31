@@ -23,7 +23,7 @@ submitBtn.addEventListener("click", async (event) => {
         body: JSON.stringify(dataLogin)
     })
     .then(response => {
-        console.log("reponse de l'API", response);
+        // console.log("reponse de l'API", response);
         if(response.ok){
             return response.json(); // Récupère la réponse en format JSON
         }else{
@@ -31,7 +31,6 @@ submitBtn.addEventListener("click", async (event) => {
         }
     })
     .then(data => {
-        console.log(data);  // Affiche les données de réponse
         window.localStorage.setItem("token",data.token);  //enregistre le token de l'utilisateur une fois connecté.
         window.location.href = './index.html';  // Redirige vers index.html car l'utilisateur est connecté
     })

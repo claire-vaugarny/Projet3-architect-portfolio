@@ -27,4 +27,3 @@ Tous les autres fichiers sont liés à index.html.
   - l'affichage de la modale pour l'ajout d'un nouveau projet,
   - la gestion de l'ajout d'un nouveau projet avec l'aperçu de l'image.
   - la modification du bouton "valider"
-  - gestion  d'affichage des projets dans la modale et sur la page
